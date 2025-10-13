@@ -1,0 +1,82 @@
+import java.util.*;
+
+public class Petstore {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Clinic clinic = new Clinic();
+
+
+
+        while (true) {
+            System.out.println("\n1. Add Pet\n2. View All Pets\n3. Search Pet\n4. Delete Pet\n5. Modify Pet\n6. Clinic Report\n7. Exit");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter pet type (Dog/Cat): ");
+                    String type = scanner.nextLine();
+
+                    System.out.print("Enter name: ");
+                    String name = scanner.nextLine();
+
+                    System.out.print("Enter age: ");
+                    int age = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.print("Enter colour: ");
+                    String colour = scanner.nextLine();
+
+                    System.out.print("Enter weight: ");
+                    double weight = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    System.out.print("Enter breed: ");
+                    String breed = scanner.nextLine();
+
+                    if (type.equalsIgnoreCase("Dog")) {
+                        clinic.addPet(new Dog(name, age, colour, weight, breed));
+                    } else if (type.equalsIgnoreCase("Cat")) {
+                        clinic.addPet(new Cat(name, age, colour, weight, breed));
+                    } else {
+                        System.out.println("Invalid pet type.");
+                    }
+                    break;
+
+                case 2:
+                    clinic.viewAllPets();
+                    break;
+
+                case 3:
+                    System.out.print("Enter name or color to search: ");
+                    String searchTerm = scanner.nextLine();
+                    clinic.searchPet(searchTerm);
+                    break;
+
+                case 4:
+                    System.out.print("Enter the name of the pet to delete: ");
+                    String deleteName = scanner.nextLine();
+                    clinic.deletePet(deleteName);
+                    break;
+
+                case 5:
+                    System.out.print("Enter the name of the pet to modify: ");
+                    String modifyName = scanner.nextLine();
+                    clinic.modifyPet(modifyName, scanner);
+                    break;
+
+                case 6:
+                    clinic.reportClinicStatus();
+                    break;
+
+                case 7:
+                    clinic.saveDataToFile();
+                    System.out.println("Exiting... Goodbye!");
+                    return;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
