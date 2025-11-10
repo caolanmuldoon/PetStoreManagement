@@ -1,0 +1,31 @@
+package com.petstore;
+
+import java.util.Iterator;
+
+abstract class Pet {
+    protected String name;
+    protected int age;
+    protected String colour;
+    protected double weight;
+
+    public Pet(String name, int age, String colour, double weight) {
+        this.name = name;
+        this.age = age;
+        this.colour = colour;
+        this.weight = weight;
+    }
+
+    public static Iterator<Pet> iterator() {
+        return null;
+    }
+
+    public abstract String speak();
+
+    public String getDetails() {
+        return name + ", " + age + " years old, " + colour + ", " + weight + " kg";
+    }
+
+    public String getName() {
+        return name;
+    }
+}
